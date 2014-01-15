@@ -2,20 +2,27 @@ package edu.insf.toolkit;
 
 import com.snowtide.pdf.*;
 import com.snowtide.pdf.PDFTextStream;
-import org.apache.pdfbox.exceptions.COSVisitorException;
-import org.apache.pdfbox.pdmodel.PDDocument;
-import org.apache.pdfbox.util.PDFTextStripper;
-
+import edu.insf.toolkit.FileHelper;
 import java.io.*;
 
 public class TextExtractor
 {
-    private PDFTextStripper stripper = null;
-    private PDDocument pdfDocument = null;
+
+    public FileHelper fHelper = new FileHelper();
+    private OutputTarget target = null;
 
     public TextExtractor()
     {
         super();
+    }
+
+    public OutputTarget getOutputTarget(BufferedWriter writer)
+    {
+        if(target == null)
+        {
+            target = new OutputTarget(writer);
+        }
+        return target;
     }
 
     public File turnToFile(String fileAddress)
@@ -24,7 +31,7 @@ public class TextExtractor
         return file;
     }
 
-    public String getPDFTextByPage(File pdfFile)
+    public String getPDFTextByPage(File pdfFile, int pageNumber)
     {
         StringBuffer sb = new StringBuffer();
 
@@ -33,8 +40,8 @@ public class TextExtractor
             PDFTextStream stream = new PDFTextStream(pdfFile);
             //A string buffer is like a String, but can be modified.
             OutputTarget target = new OutputTarget(sb);
-            Page fifthPage = stream.getPage(4);
-            fifthPage.pipe(target);
+            Page page = stream.getPage(pageNumber);
+            page.pipe(target);
             stream.close();
         }
         catch(IOException e)
@@ -45,17 +52,43 @@ public class TextExtractor
         return sb.toString();
     }
 
-    public void saveText(File pdfFile, File textFile)
+    public void saveText(File pdfFile, String textFile)
     {
         try
         {
             PDFTextStream stream = new PDFTextStream(pdfFile);
-            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(textFile)));
+            BufferedWriter writer = fHelper.getBufferedWritter(textFile);
             OutputTarget target = new OutputTarget(writer);
             stream.pipe(target);
             writer.flush();
             writer.close();
             stream.close();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    public void saveAllTextByPage(File pdfFile, String textFileBase)
+    {
+        try
+        {
+            OutputTarget target = null;
+            PDFTextStream stream = new PDFTextStream(pdfFile);
+            BufferedWriter writter = null;
+            for(int i=1; i<stream.getPageCnt()+1; i++)
+            {
+                writter = fHelper.getBufferedWritter(textFileBase+"_"+String.valueOf(i));
+                target = this.getOutputTarget(writter);
+                Page page = stream.getPage(i);
+                page.pipe(target);
+
+            }
+            writter.flush();
+            writter.close();
+            stream.close();
+
         }
         catch (IOException e)
         {
