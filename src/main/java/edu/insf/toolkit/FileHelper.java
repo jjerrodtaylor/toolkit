@@ -5,53 +5,14 @@ import java.util.ArrayList;
 
 public class FileHelper {
 
-    private BufferedWriter bw = null;
-    private BufferedReader br = null;
 
-    public BufferedWriter getBufferedWritter(String nameOfFile)
+    public File turnToFile(String filePath)
     {
-        if(bw == null)
-        {
-            try
-            {
-                bw = new BufferedWriter(new FileWriter(nameOfFile));
-            }
-            catch (IOException e)
-            {
-                e.printStackTrace();
-            }
-        }
-
-        return bw;
-    }
-
-    public BufferedWriter getBufferedWritter()
-    {
-        return bw;
-    }
-
-    public BufferedReader getBufferedReader(String nameOfFile)
-    {
-        if(br == null)
-        {
-            try
-            {
-                br = new BufferedReader(new FileReader(nameOfFile));
-            }
-            catch (IOException e)
-            {
-                e.printStackTrace();
-            }
-        }
-
-        return br;
+        File file = new File(filePath);
+        return file;
     }
 
 
-    public BufferedReader getBufferedReader()
-    {
-        return br;
-    }
 
     public void killBufferedReader()
     {
@@ -61,8 +22,35 @@ public class FileHelper {
 
     public void killBufferedWritter()
     {
+         this.bw = null;
+    }
+
+    public void writeFile(String stringToWrite, String nameOfFile)
+    {
+        bw = this.getBufferedWritter(nameOfFile);
+        try
+        {
+            bw.write(stringToWrite);
+            bw.newLine();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    public void writterFlushClose()
+    {
         BufferedWriter bw = this.getBufferedWritter();
-        bw = null;
+        try
+        {
+            bw.flush();
+            bw.close();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -72,8 +60,8 @@ public class FileHelper {
      */
     public void writeFile(ArrayList<String> linesToWrite, String nameOfFile)
     {
-
-        bw = this.getBufferedWritter(nameOfFile);
+        this.killBufferedWritter();
+        BufferedWriter bw = this.getBufferedWritter(nameOfFile);
 
         for(String s: linesToWrite)
         {
@@ -87,9 +75,9 @@ public class FileHelper {
                 e.printStackTrace();
             }
         }
-
         try
         {
+            bw.flush();
             bw.close();
         }
         catch (IOException e)
