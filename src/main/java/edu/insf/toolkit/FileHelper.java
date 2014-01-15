@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class FileHelper {
 
-
+    private BufferedWriter bw = null;
     public File turnToFile(String filePath)
     {
         File file = new File(filePath);
@@ -13,21 +13,9 @@ public class FileHelper {
     }
 
 
-
-    public void killBufferedReader()
-    {
-        BufferedReader br = this.getBufferedReader();
-        br = null;
-    }
-
-    public void killBufferedWritter()
-    {
-         this.bw = null;
-    }
-
     public void writeFile(String stringToWrite, String nameOfFile)
     {
-        bw = this.getBufferedWritter(nameOfFile);
+        bw = SingletonBufferedWritter.getBufferedWritter(nameOfFile);
         try
         {
             bw.write(stringToWrite);
@@ -39,19 +27,6 @@ public class FileHelper {
         }
     }
 
-    public void writterFlushClose()
-    {
-        BufferedWriter bw = this.getBufferedWritter();
-        try
-        {
-            bw.flush();
-            bw.close();
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
-        }
-    }
 
     /**
      * Function takes an Arraylist of Strings as well as the path for where the file should be written to.
@@ -60,8 +35,7 @@ public class FileHelper {
      */
     public void writeFile(ArrayList<String> linesToWrite, String nameOfFile)
     {
-        this.killBufferedWritter();
-        BufferedWriter bw = this.getBufferedWritter(nameOfFile);
+        BufferedWriter bw = SingletonBufferedWritter.getBufferedWritter(nameOfFile);
 
         for(String s: linesToWrite)
         {
@@ -88,7 +62,7 @@ public class FileHelper {
 
     public ArrayList<String> readFileToMemory(String filepath)
     {
-        BufferedReader br = this.getBufferedReader(filepath);
+        BufferedReader br = SingletonBufferedReader.getBufferedReader(filepath);
         String currentLine = null;
         ArrayList<String> fileContents = new ArrayList<String>();
 
