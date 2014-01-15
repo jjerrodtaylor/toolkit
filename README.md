@@ -7,3 +7,6 @@ It currently includes:
 - Functions for reading and writing files
 - A class that can be used to hold input and output patterns if you are training an Artificial Neural Network
 - A class to extract text from PDF files
+- 
+
+I still need to write tests!!! Don't judge me   :-(
