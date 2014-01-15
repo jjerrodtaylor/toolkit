@@ -7,6 +7,12 @@ public class Constants
 {
     public static String READ_FILE_NAME = null;
     public static String WRITE_FILE_NAME = null;
+    public static String METAMORPH_ENG = "/Users/jamaaltaylor/Documents/toolkit/src/test/resources/metamorph_eng.pdf";
+    public static String METAMORPH_ESP = "/Users/jamaaltaylor/Documents/toolkit/src/test/resources/metamorph_esp.pdf";
+    public static String METAMORPH_ENG_TXT = "/Users/jamaaltaylor/Documents/toolkit/src/test/resources/metamorph_eng.txt";
+    public static String METAMORPH_ESP_TXT = "/Users/jamaaltaylor/Documents/toolkit/src/test/resources/metamorph_esp.txt";
+    public static String METAMORPH_ENG_TXT_FMT = "/Users/jamaaltaylor/Documents/toolkit/src/test/resources/metamorph_eng_fmt.txt";
+    public static String METAMORPH_ESP_TXT_FMT = "/Users/jamaaltaylor/Documents/toolkit/src/test/resources/metamorph_esp_fmt.txt";
 
     public void setREAD_FILE_NAME(String file_name)
     {
