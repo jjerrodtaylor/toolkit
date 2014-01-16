@@ -27,4 +27,9 @@ public class IOBufferedWriter extends IOBuffered
             e.printStackTrace();
         }
     }
+
+    public BufferedWriter getBufferedWriter()
+    {
+        return this.bw;
+    }
 }

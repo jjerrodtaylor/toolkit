@@ -14,7 +14,6 @@ import java.io.FileReader;
 public class IOBufferedReader extends IOBuffered
 {
     private BufferedReader br = null;
-
     public IOBufferedReader(String filePath)
     {
         super(IOType.BUFFERED_READER);
@@ -32,5 +31,10 @@ public class IOBufferedReader extends IOBuffered
         {
             e.printStackTrace();
         }
+    }
+
+    public BufferedReader getBufferedReader()
+    {
+        return this.br;
     }
 }

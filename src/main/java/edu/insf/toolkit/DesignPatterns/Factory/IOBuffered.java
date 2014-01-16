@@ -1,6 +1,11 @@
 package edu.insf.toolkit.DesignPatterns.Factory;
 
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.util.ArrayList;
+import java.util.List;
+
 public abstract class IOBuffered
 {
     public IOBuffered()
@@ -12,6 +17,7 @@ public abstract class IOBuffered
     {
         this.ioType = type;
     }
+    List<String> s = new ArrayList<String>();
 
     private IOType ioType = null;
 
@@ -28,6 +34,4 @@ public abstract class IOBuffered
     {
         this.ioType = type;
     }
-
-
 }
