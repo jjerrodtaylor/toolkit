@@ -1,25 +1,27 @@
 package edu.insf.toolkit;
 
+import edu.insf.toolkit.DesignPatterns.Singletons.SingletonBufferedReader;
+import edu.insf.toolkit.DesignPatterns.Singletons.SingletonBufferedWriter;
+import edu.insf.toolkit.DesignPatterns.Factory.*;
+
 import java.io.*;
 import java.util.ArrayList;
 
 public class FileHelper {
 
-    private BufferedWriter bw = null;
     public File turnToFile(String filePath)
     {
         File file = new File(filePath);
         return file;
     }
 
-
     public void writeFile(String stringToWrite, String nameOfFile)
     {
-        bw = SingletonBufferedWritter.getBufferedWritter(nameOfFile);
+        IOBufferedWriter  bw = IOFactory.buildIOBufferedWriter(nameOfFile);
         try
         {
-            bw.write(stringToWrite);
-            bw.newLine();
+            bw.getBufferedWriter().write(stringToWrite);
+            bw.getBufferedWriter().newLine();
         }
         catch (IOException e)
         {
@@ -35,14 +37,14 @@ public class FileHelper {
      */
     public void writeFile(ArrayList<String> linesToWrite, String nameOfFile)
     {
-        BufferedWriter bw = SingletonBufferedWritter.getBufferedWritter(nameOfFile);
+        IOBufferedWriter  bw = IOFactory.buildIOBufferedWriter(nameOfFile);
 
         for(String s: linesToWrite)
         {
             try
             {
-                bw.write(s);
-                bw.newLine();
+                bw.getBufferedWriter().write(s);
+                bw.getBufferedWriter().newLine();
             }
             catch (IOException e)
             {
@@ -51,8 +53,8 @@ public class FileHelper {
         }
         try
         {
-            bw.flush();
-            bw.close();
+            bw.getBufferedWriter().flush();
+            bw.getBufferedWriter().close();
         }
         catch (IOException e)
         {
@@ -62,13 +64,13 @@ public class FileHelper {
 
     public ArrayList<String> readFileToMemory(String filepath)
     {
-        BufferedReader br = SingletonBufferedReader.getBufferedReader(filepath);
+        IOBufferedReader br = IOFactory.buildIOBufferedReader(filepath);
         String currentLine = null;
         ArrayList<String> fileContents = new ArrayList<String>();
 
         try
         {
-            while((currentLine = br.readLine()) != null)
+            while((currentLine = br.getBufferedReader().readLine()) != null)
             {
                 fileContents.add(currentLine);
             }
@@ -81,7 +83,7 @@ public class FileHelper {
         {
             try
             {
-                br.close();
+                br.getBufferedReader().close();
             }
             catch(IOException e)
             {
