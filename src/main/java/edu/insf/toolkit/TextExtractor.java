@@ -2,7 +2,8 @@ package edu.insf.toolkit;
 
 import com.snowtide.pdf.*;
 import com.snowtide.pdf.PDFTextStream;
-import edu.insf.toolkit.FileHelper;
+import edu.insf.toolkit.DesignPatterns.Singletons.SingletonBufferedWritter;
+
 import java.io.*;
 
 public class TextExtractor
@@ -57,7 +58,7 @@ public class TextExtractor
         try
         {
             PDFTextStream stream = new PDFTextStream(pdfFile);
-            BufferedWriter writer = fHelper.getBufferedWritter(textFile);
+            BufferedWriter writer = SingletonBufferedWritter.getBufferedWritter(textFile);
             OutputTarget target = new OutputTarget(writer);
             stream.pipe(target);
             writer.flush();
@@ -79,11 +80,10 @@ public class TextExtractor
             BufferedWriter writter = null;
             for(int i=1; i<stream.getPageCnt()+1; i++)
             {
-                writter = fHelper.getBufferedWritter(textFileBase+"_"+String.valueOf(i));
+                writter = SingletonBufferedWritter.getBufferedWritter(textFileBase+"_"+String.valueOf(i));
                 target = this.getOutputTarget(writter);
                 Page page = stream.getPage(i);
                 page.pipe(target);
-
             }
             writter.flush();
             writter.close();
