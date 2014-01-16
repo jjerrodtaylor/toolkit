@@ -11,7 +11,7 @@ import java.io.IOException;
  * Time: 5:13 PM
  * To change this template use File | Settings | File Templates.
  */
-public class SingletonBufferedWritter {
+public class SingletonBufferedWriter {
 
     private static BufferedWriter bw = null;
 
