@@ -45,15 +45,18 @@ public class TextTokenizer
         locale = new Locale(language,country,variant);
     }
 
-    public ArrayList<String> tokenize(String text, Locale locale){
+    public ArrayList<String> tokenize(String text, Locale locale)
+    {
         ArrayList<String> sentences = new ArrayList<String>();
         BreakIterator sentenceIterator = BreakIterator.getSentenceInstance(Locale.US);
         sentenceIterator.setText(text);
         int boundary = sentenceIterator.first();
         int lastBoundary = 0;
-        while (boundary != BreakIterator.DONE) {
+        while (boundary != BreakIterator.DONE)
+        {
             boundary = sentenceIterator.next();
-            if(boundary != BreakIterator.DONE){
+            if(boundary != BreakIterator.DONE)
+            {
                 sentences.add(text.substring(lastBoundary, boundary));
             }
             lastBoundary = boundary;
@@ -61,21 +64,36 @@ public class TextTokenizer
         return sentences;
     }
 
-    public ArrayList<String> tokenize(String text, String language, String country){
+    public ArrayList<String> tokenize(String text, String language, String country)
+    {
         ArrayList<String> sentences = new ArrayList<String>();
         Locale currentLocale = new Locale(language, country);
         BreakIterator sentenceIterator = BreakIterator.getSentenceInstance(currentLocale);
         sentenceIterator.setText(text);
         int boundary = sentenceIterator.first();
         int lastBoundary = 0;
-        while (boundary != BreakIterator.DONE) {
+        while (boundary != BreakIterator.DONE)
+        {
             boundary = sentenceIterator.next();
-            if(boundary != BreakIterator.DONE){
+            if(boundary != BreakIterator.DONE)
+            {
                 sentences.add(text.substring(lastBoundary, boundary));
             }
             lastBoundary = boundary;
         }
         return sentences;
+    }
+
+    public ArrayList<String> replaceNewLines(ArrayList<String> lines)
+    {
+        ArrayList<String> newLines = new ArrayList<String>();
+
+        for(String s: lines)
+        {
+            String str = s.replaceAll("(\\n)"," ");
+            newLines.add(str);
+        }
+        return newLines;
     }
 
 
