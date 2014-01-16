@@ -8,6 +8,8 @@ import java.io.*;
 import java.util.ArrayList;
 
 public class FileHelper {
+    IOBufferedWriter  bw = null;
+    IOBufferedReader br = null;
 
     public File turnToFile(String filePath)
     {
@@ -17,15 +19,27 @@ public class FileHelper {
 
     public void writeFile(String stringToWrite, String nameOfFile)
     {
-        IOBufferedWriter  bw = IOFactory.buildIOBufferedWriter(nameOfFile);
+        this.bw = IOFactory.buildIOBufferedWriter(nameOfFile);
         try
         {
-            bw.getBufferedWriter().write(stringToWrite);
-            bw.getBufferedWriter().newLine();
+            this.bw.getBufferedWriter().write(stringToWrite);
+            this.bw.getBufferedWriter().newLine();
         }
         catch (IOException e)
         {
             e.printStackTrace();
+        }
+        finally
+        {
+            try
+            {
+                this.bw.getBufferedWriter().flush();
+                this.bw.getBufferedWriter().close();
+            }
+            catch (IOException e)
+            {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -37,14 +51,14 @@ public class FileHelper {
      */
     public void writeFile(ArrayList<String> linesToWrite, String nameOfFile)
     {
-        IOBufferedWriter  bw = IOFactory.buildIOBufferedWriter(nameOfFile);
+        this.bw = IOFactory.buildIOBufferedWriter(nameOfFile);
 
         for(String s: linesToWrite)
         {
             try
             {
-                bw.getBufferedWriter().write(s);
-                bw.getBufferedWriter().newLine();
+                this.bw.getBufferedWriter().write(s);
+                this.bw.getBufferedWriter().newLine();
             }
             catch (IOException e)
             {
@@ -53,8 +67,8 @@ public class FileHelper {
         }
         try
         {
-            bw.getBufferedWriter().flush();
-            bw.getBufferedWriter().close();
+            this.bw.getBufferedWriter().flush();
+            this.bw.getBufferedWriter().close();
         }
         catch (IOException e)
         {
@@ -64,13 +78,13 @@ public class FileHelper {
 
     public ArrayList<String> readFileToMemory(String filepath)
     {
-        IOBufferedReader br = IOFactory.buildIOBufferedReader(filepath);
+        this.br = IOFactory.buildIOBufferedReader(filepath);
         String currentLine = null;
         ArrayList<String> fileContents = new ArrayList<String>();
 
         try
         {
-            while((currentLine = br.getBufferedReader().readLine()) != null)
+            while((currentLine = this.br.getBufferedReader().readLine()) != null)
             {
                 fileContents.add(currentLine);
             }
@@ -83,7 +97,7 @@ public class FileHelper {
         {
             try
             {
-                br.getBufferedReader().close();
+                this.br.getBufferedReader().close();
             }
             catch(IOException e)
             {
