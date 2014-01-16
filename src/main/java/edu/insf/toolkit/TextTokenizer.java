@@ -64,10 +64,10 @@ public class TextTokenizer
         return sentences;
     }
 
-    public ArrayList<String> tokenize(String text, String language, String country)
+    public ArrayList<String> tokenize(String text, String language)
     {
         ArrayList<String> sentences = new ArrayList<String>();
-        Locale currentLocale = new Locale(language, country);
+        Locale currentLocale = new Locale(language);
         BreakIterator sentenceIterator = BreakIterator.getSentenceInstance(currentLocale);
         sentenceIterator.setText(text);
         int boundary = sentenceIterator.first();
@@ -83,6 +83,8 @@ public class TextTokenizer
         }
         return sentences;
     }
+
+
 
     public ArrayList<String> replaceNewLines(ArrayList<String> lines)
     {
