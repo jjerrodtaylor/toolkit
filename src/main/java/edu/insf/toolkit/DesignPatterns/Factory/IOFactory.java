@@ -1,11 +1,31 @@
 package edu.insf.toolkit.DesignPatterns.Factory;
 
-/**
- * Created with IntelliJ IDEA.
- * User: jamaaltaylor
- * Date: 1/15/14
- * Time: 10:46 PM
- * To change this template use File | Settings | File Templates.
- */
-public class IOFactory {
+
+public class IOFactory
+{
+    public static IOBuffered buildIOBuffered(IOType type, String filePath)
+    {
+        IOBuffered buffered = null;
+
+        switch (type)
+        {
+            case BUFFERED_READER:
+                buffered = new IOBufferedReader(filePath);
+                break;
+            case BUFFERED_WRITTER:
+                buffered = new IOBufferedWriter(filePath);
+                break;
+            default:
+                buffered = null;
+        }
+
+        if(buffered == null)
+        {
+            throw new IOFactoryException("This IOBuffered type does not exist");
+        }
+        else
+        {
+            return buffered;
+        }
+    }
 }
