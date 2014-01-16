@@ -1,4 +1,4 @@
-package edu.insf.toolkit;
+package edu.insf.toolkit.DesignPatterns.Singletons;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
