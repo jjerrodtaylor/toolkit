@@ -13,6 +13,8 @@ public class Constants
     public static String METAMORPH_ESP_TXT = "/Users/jamaaltaylor/Documents/toolkit/src/test/resources/metamorph_esp.txt";
     public static String METAMORPH_ENG_TXT_FMT = "/Users/jamaaltaylor/Documents/toolkit/src/test/resources/metamorph_eng_fmt.txt";
     public static String METAMORPH_ESP_TXT_FMT = "/Users/jamaaltaylor/Documents/toolkit/src/test/resources/metamorph_esp_fmt.txt";
+    public static String TEST_FILE = "/Users/jamaaltaylor/Documents/toolkit/src/test/resources/testfile.txt";
+    public static String METAMORPH_ENG_ESP_TXT = "/Users/jamaaltaylor/Documents/toolkit/src/test/resources/metamorph-en-es.txt";
 
     public void setREAD_FILE_NAME(String file_name)
     {
