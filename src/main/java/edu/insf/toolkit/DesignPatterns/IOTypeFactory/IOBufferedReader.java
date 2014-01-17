@@ -1,16 +1,10 @@
-package edu.insf.toolkit.DesignPatterns.Factory;
+package edu.insf.toolkit.DesignPatterns.IOTypeFactory;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 
-/**
- * Created with IntelliJ IDEA.
- * User: jamaaltaylor
- * Date: 1/15/14
- * Time: 10:46 PM
- * To change this template use File | Settings | File Templates.
- */
+
 public class IOBufferedReader extends IOBuffered
 {
     private BufferedReader br = null;

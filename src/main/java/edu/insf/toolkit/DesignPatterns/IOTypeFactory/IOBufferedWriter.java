@@ -1,5 +1,4 @@
-package edu.insf.toolkit.DesignPatterns.Factory;
-
+package edu.insf.toolkit.DesignPatterns.IOTypeFactory;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;

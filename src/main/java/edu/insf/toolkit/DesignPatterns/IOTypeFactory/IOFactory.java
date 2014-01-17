@@ -1,4 +1,4 @@
-package edu.insf.toolkit.DesignPatterns.Factory;
+package edu.insf.toolkit.DesignPatterns.IOTypeFactory;
 
 
 public class IOFactory
