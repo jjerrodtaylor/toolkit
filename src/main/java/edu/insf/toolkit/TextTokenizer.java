@@ -8,6 +8,9 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 
+/**
+ * http://en.wikipedia.org/wiki/List_of_ISO_639-2_codes
+ */
 public class TextTokenizer
 {
     //http://docs.oracle.com/javase/6/docs/api/java/util/Locale.html#UK
@@ -83,8 +86,6 @@ public class TextTokenizer
         }
         return sentences;
     }
-
-
 
     public ArrayList<String> replaceNewLines(ArrayList<String> lines)
     {
