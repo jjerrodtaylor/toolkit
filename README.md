@@ -19,3 +19,7 @@ Parallel corpora for medium density languages
 ==============================================
 In Proceedings of the RANLP 2005, pages 590-596.
 ===================================================
+http://www.kornai.com/Papers/ranlp05parallel.pdf
+==================================================
+
+
