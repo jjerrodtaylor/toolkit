@@ -36,5 +36,10 @@ public class TestIt {
         list = textTokenizer.tokenize(firstPage,"spa");
         list = textTokenizer.replaceNewLines(list);
         fileHelper.writeFile(list, Constants.METAMORPH_ESP_TXT_FMT);
+
+        //The combined languages
+        ArrayList<String> combinedText = fileHelper.readFileToMemory(Constants.METAMORPH_ENG_ESP_TXT);
+
+        int i;
     }
 }
