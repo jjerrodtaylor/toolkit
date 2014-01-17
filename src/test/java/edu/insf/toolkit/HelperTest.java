@@ -1,11 +1,23 @@
 package edu.insf.toolkit;
 
-/**
- * Created with IntelliJ IDEA.
- * User: jamaaltaylor
- * Date: 1/16/14
- * Time: 2:15 PM
- * To change this template use File | Settings | File Templates.
- */
-public class HelperTest {
+import edu.insf.toolkit.Helper;
+import org.junit.Test;
+import org.junit.Before;
+import java.util.ArrayList;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
+import java.io.File;
+
+public class HelperTest
+{
+    Helper helper = new Helper();
+
+    @Test
+    public void testGenerateRandonDouble()
+    {
+        double generatedNumber = helper.generateRandomDouble(1,1);
+        assertEquals(1.0,generatedNumber,0.0);
+    }
+
+
 }
