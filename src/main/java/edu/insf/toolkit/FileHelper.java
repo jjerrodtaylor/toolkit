@@ -1,8 +1,6 @@
 package edu.insf.toolkit;
 
-import edu.insf.toolkit.DesignPatterns.Singletons.SingletonBufferedReader;
-import edu.insf.toolkit.DesignPatterns.Singletons.SingletonBufferedWriter;
-import edu.insf.toolkit.DesignPatterns.Factory.*;
+import edu.insf.toolkit.DesignPatterns.IOTypeFactory.*;
 
 import java.io.*;
 import java.util.ArrayList;

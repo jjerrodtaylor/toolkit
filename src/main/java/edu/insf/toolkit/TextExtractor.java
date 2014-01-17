@@ -52,47 +52,4 @@ public class TextExtractor
 
         return sb.toString();
     }
-
-    public void saveText(File pdfFile, String textFile)
-    {
-        try
-        {
-            PDFTextStream stream = new PDFTextStream(pdfFile);
-            BufferedWriter writer = SingletonBufferedWriter.getBufferedWritter(textFile);
-            OutputTarget target = new OutputTarget(writer);
-            stream.pipe(target);
-            writer.flush();
-            writer.close();
-            stream.close();
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
-        }
-    }
-
-    public void saveAllTextByPage(File pdfFile, String textFileBase)
-    {
-        try
-        {
-            OutputTarget target = null;
-            PDFTextStream stream = new PDFTextStream(pdfFile);
-            BufferedWriter writter = null;
-            for(int i=1; i<stream.getPageCnt()+1; i++)
-            {
-                writter = SingletonBufferedWriter.getBufferedWritter(textFileBase + "_" + String.valueOf(i));
-                target = this.getOutputTarget(writter);
-                Page page = stream.getPage(i);
-                page.pipe(target);
-            }
-            writter.flush();
-            writter.close();
-            stream.close();
-
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
-        }
-    }
 }
