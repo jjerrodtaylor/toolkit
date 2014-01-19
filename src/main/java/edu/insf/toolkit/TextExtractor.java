@@ -5,6 +5,7 @@ import com.snowtide.pdf.PDFTextStream;
 import edu.insf.toolkit.DesignPatterns.Singletons.SingletonBufferedWriter;
 
 import java.io.*;
+import java.util.ArrayList;
 
 public class TextExtractor
 {
@@ -51,5 +52,20 @@ public class TextExtractor
         }
 
         return sb.toString();
+    }
+
+    public ArrayList<String> getChapter(File pdfFile, int startPage, int endPage)
+    {
+        StringBuffer sb = new StringBuffer();
+        ArrayList<String> chapter = new ArrayList<String>();
+        String page = null;
+
+        for(int i=startPage; i<endPage;i++)
+        {
+            page = this.getPDFTextByPage(pdfFile,i);
+            chapter.add(page);
+        }
+
+        return chapter;
     }
 }
