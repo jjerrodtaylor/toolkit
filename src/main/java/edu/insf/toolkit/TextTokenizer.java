@@ -99,6 +99,34 @@ public class TextTokenizer
         return newLines;
     }
 
+    public ArrayList<ArrayList<String>> divideText(ArrayList<String> combinedText)
+    {
+        String[] newStrings;
+        ArrayList<ArrayList<String>> seperatedTexts = new ArrayList<ArrayList<String>>();
+        ArrayList<String> l1Text = new ArrayList<String>();
+        ArrayList<String> l2Text = new ArrayList<String>();
+
+        for(String s: combinedText)
+        {
+            newStrings = s.split("\\t");
+            if(newStrings.length == 2)
+            {
+                l1Text.add(newStrings[0]);
+                l2Text.add(newStrings[1]);
+            }
+            else
+            {
+                l1Text.add(newStrings[0]);
+                l2Text.add("");
+            }
+        }
+
+        seperatedTexts.add(l1Text);
+        seperatedTexts.add(l2Text);
+
+        return seperatedTexts;
+    }
+
 
 
 
