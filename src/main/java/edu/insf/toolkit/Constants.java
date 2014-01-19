@@ -11,7 +11,7 @@ public class Constants
     public static String WRITE_FILE_NAME = null;
     public static String METAMORPH_ENG = Constants.makeFilePath("/src/test/resources/metamorph_eng.pdf");
     public static String METAMORPH_ESP = Constants.makeFilePath("/src/test/resources/metamorph_esp.pdf");
-    public static String METAMORPH_ENG_TXT = Constants.makeFilePath("src/test/resources/metamorph_eng.txt");
+    public static String METAMORPH_ENG_TXT = Constants.makeFilePath("/src/test/resources/metamorph_eng.txt");
     public static String METAMORPH_ESP_TXT = Constants.makeFilePath("/src/test/resources/metamorph_esp.txt");
     public static String METAMORPH_ENG_TXT_FMT = Constants.makeFilePath("/src/test/resources/metamorph_eng_fmt.txt");
     public static String METAMORPH_ESP_TXT_FMT = Constants.makeFilePath("/src/test/resources/metamorph_esp_fmt.txt");
