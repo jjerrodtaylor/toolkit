@@ -4,7 +4,10 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 
-
+/*
+* For the uninitiated:
+* http://en.wikipedia.org/wiki/Factory_method_pattern
+* */
 public class IOBufferedReader extends IOBuffered
 {
     private BufferedReader br = null;

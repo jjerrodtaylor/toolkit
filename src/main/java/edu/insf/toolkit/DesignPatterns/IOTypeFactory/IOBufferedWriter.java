@@ -4,6 +4,7 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 
+
 public class IOBufferedWriter extends IOBuffered
 {
     private BufferedWriter bw = null;

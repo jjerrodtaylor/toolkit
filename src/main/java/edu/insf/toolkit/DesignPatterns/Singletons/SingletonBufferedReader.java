@@ -5,11 +5,8 @@ import java.io.FileReader;
 import java.io.IOException;
 
 /**
- * Created with IntelliJ IDEA.
- * User: jamaaltaylor
- * Date: 1/15/14
- * Time: 5:12 PM
- * To change this template use File | Settings | File Templates.
+ * For the uninitiated:
+ * http://en.wikipedia.org/wiki/Singleton_pattern
  */
 public class SingletonBufferedReader {
 
