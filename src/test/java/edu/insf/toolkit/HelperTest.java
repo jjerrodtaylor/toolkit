@@ -1,12 +1,8 @@
 package edu.insf.toolkit;
 
-import edu.insf.toolkit.Helper;
-import org.junit.Test;
-import org.junit.Before;
-import java.util.ArrayList;
+import edu.insf.toolkit.Tools.Helper;
+
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.*;
-import java.io.File;
 
 public class HelperTest
 {
