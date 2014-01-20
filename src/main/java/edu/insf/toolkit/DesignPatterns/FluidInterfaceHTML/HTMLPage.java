@@ -1,4 +1,6 @@
 package edu.insf.toolkit.DesignPatterns.FluidInterfaceHTML;
+import edu.insf.toolkit.Models.ParallelPage;
+
 import java.util.ArrayList;
 
 /*
@@ -116,23 +118,23 @@ public class HTMLPage
         return this;
     }
 
-    public String makePage(ArrayList<ArrayList<String>> content)
+    public String makePage(ParallelPage content)
     {
         this.openHtml()
             .openBody()
             .openTable();
 
-            for(int i=0;i<content.get(0).size(); i++)
+            for(int i=0;i<content.getL1().getTokenizedPage().size(); i++)
             {
                 this.openTR()
                         .openTD()
                             .openP()
-                                .addContent(content.get(0).get(i))
+                                .addContent(content.getL1().getTokenizedPage().get(i))
                             .closeP()
                         .closeTD()
                         .openTD()
                             .openP()
-                                .addContent(content.get(1).get(i))
+                                .addContent(content.getL2().getTokenizedPage().get(i))
                             .closeP()
                         .closeTD()
                     .closeTR();
