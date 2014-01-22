@@ -1,13 +1,15 @@
 package edu.insf.toolkit.Tools;
 
 import edu.insf.toolkit.DesignPatterns.IOTypeFactory.*;
-
+import edu.insf.toolkit.Models.BPage;
+import org.odftoolkit.simple.TextDocument;
 import java.io.*;
 import java.util.ArrayList;
 
 public class FileHelper {
     IOBufferedWriter  bw = null;
     IOBufferedReader br = null;
+    TextDocument textDocument = null;
 
     public File turnToFile(String filePath)
     {
@@ -74,6 +76,30 @@ public class FileHelper {
         }
     }
 
+    public void writeFileAsODTFile(ArrayList<BPage> pages, String nameOfFile)
+    {
+        try
+        {
+            textDocument = TextDocument.newTextDocument();
+
+            //go through each page
+            for(int i=0;i<pages.size();i++)
+            {
+                //go through each paragraph in the page
+                ArrayList<String> page = pages.get(i).getTokenizedPage();
+                for(int j=0;j<page.size();j++)
+                {
+                    textDocument.addParagraph(page.get(j));
+                }
+            }
+
+            textDocument.save(nameOfFile);
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
 
     public void writeChapter(ArrayList<ArrayList<String>>  chapter, int chapterNumber)
     {

@@ -59,4 +59,10 @@ public class ModelsTest
         assertNull(page.getTokenizedPage());
 
     }
+
+    @Test
+    public void testChapter()
+    {
+        //chapter
+    }
 }
