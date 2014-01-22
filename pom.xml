@@ -80,6 +80,11 @@
       </dependency>
       <dependency>
           <groupId>org.odftoolkit</groupId>
+          <artifactId>simple-odf</artifactId>
+          <version>0.6</version>
+      </dependency>
+      <dependency>
+          <groupId>org.odftoolkit</groupId>
           <artifactId>odfdom-java</artifactId>
           <version>0.8.7</version>
       </dependency>
