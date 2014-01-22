@@ -47,6 +47,22 @@ public class Chapter
         return chapter;
     }
 
+    public ArrayList<BPage> combineTextsForWriting()
+    {
+        ArrayList<ParallelPage> parallelPages = this.getParallelChapter();
+        ArrayList<BPage> pages = new ArrayList<BPage>();
+
+        for(int i = 0; i<parallelPages.size();i++)
+        {
+            pages.add(parallelPages.get(i).getL1());
+            pages.add(parallelPages.get(i).getL2());
+        }
+
+        return pages;
+    }
+
+
+
     public void writeChapter(ArrayList<ParallelPage> pages, int chapterNumber)
     {
         for(double i=0;i<pages.size();i=i+.5)
@@ -62,4 +78,5 @@ public class Chapter
             }
         }
     }
+
 }
