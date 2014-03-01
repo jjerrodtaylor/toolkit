@@ -8,15 +8,28 @@ import java.io.FileReader;
 * For the uninitiated:
 * http://en.wikipedia.org/wiki/Factory_method_pattern
 * */
+
+/**
+ *
+ */
 public class IOBufferedReader extends IOBuffered
 {
     private BufferedReader br = null;
+
+    /**
+     *
+     * @param filePath
+     */
     public IOBufferedReader(String filePath)
     {
         super(IOType.BUFFERED_READER);
         this.construct(filePath);
     }
 
+    /**
+     *
+     * @param filePath
+     */
     @Override
     protected void construct(String filePath)
     {
@@ -30,6 +43,12 @@ public class IOBufferedReader extends IOBuffered
         }
     }
 
+
+
+    /**
+     *
+     * @return
+     */
     public BufferedReader getBufferedReader()
     {
         return this.br;

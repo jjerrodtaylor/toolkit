@@ -4,6 +4,10 @@ package edu.insf.toolkit.DesignPatterns.IOTypeFactory;
 * For the uninitiated:
 * http://en.wikipedia.org/wiki/Factory_method_pattern
 * */
+
+/**
+ *
+ */
 public abstract class IOBuffered
 {
     public IOBuffered()
@@ -18,15 +22,26 @@ public abstract class IOBuffered
 
     private IOType ioType = null;
 
-    //Do subclass level processing in this method
+    /**
+     *
+     * @param filePath
+     */
     protected abstract void construct(String filePath);
 
 
+    /**
+     *
+     * @return
+     */
     public IOType getIoType()
     {
         return ioType;
     }
 
+    /**
+     *
+     * @param type
+     */
     public void setIoType(IOType type)
     {
         this.ioType = type;

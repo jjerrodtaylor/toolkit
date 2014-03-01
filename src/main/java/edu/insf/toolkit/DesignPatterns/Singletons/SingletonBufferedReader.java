@@ -8,10 +8,19 @@ import java.io.IOException;
  * For the uninitiated:
  * http://en.wikipedia.org/wiki/Singleton_pattern
  */
+
+/**
+ *
+ */
 public class SingletonBufferedReader {
 
     private static BufferedReader br = null;
 
+    /**
+     *
+     * @param nameOfFile
+     * @return
+     */
     public static BufferedReader getBufferedReader(String nameOfFile)
     {
         if(br == null)
@@ -29,7 +38,10 @@ public class SingletonBufferedReader {
         return br;
     }
 
-
+    /**
+     *
+     * @return
+     */
     public static BufferedReader getBufferedReader()
     {
         return br;

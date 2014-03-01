@@ -8,10 +8,19 @@ import java.io.IOException;
  * For the uninitiated:
  * http://en.wikipedia.org/wiki/Singleton_pattern
  */
+
+/**
+ *
+ */
 public class SingletonBufferedWriter {
 
     private static BufferedWriter bw = null;
 
+    /**
+     *
+     * @param nameOfFile
+     * @return
+     */
     public static BufferedWriter getBufferedWritter(String nameOfFile)
     {
         if(bw == null)
@@ -29,6 +38,10 @@ public class SingletonBufferedWriter {
         return bw;
     }
 
+    /**
+     *
+     * @return
+     */
     public static BufferedWriter getBufferedWritter()
     {
         return bw;
