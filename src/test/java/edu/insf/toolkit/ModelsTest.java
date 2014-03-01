@@ -12,6 +12,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.*;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 public class ModelsTest
 {
@@ -31,7 +33,7 @@ public class ModelsTest
     @Test
     public void testBPage()
     {
-        ArrayList<String> testList = new ArrayList<String>();
+        LinkedList<String> testList = new LinkedList<String>();
 
         //make sure everything is null to start
         assertEquals(null,page.getUnTokenizedPage());

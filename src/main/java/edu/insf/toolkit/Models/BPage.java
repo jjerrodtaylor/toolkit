@@ -7,6 +7,8 @@ import java.io.File;
 import java.io.IOException;
 import java.text.BreakIterator;
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Locale;
 
 public class BPage
@@ -15,33 +17,54 @@ public class BPage
     private Locale locale = null;
     private BreakIterator breakIterator = null;
     private String unTokenizedPage = null;
-    private ArrayList<String> tokenizedPage = new ArrayList<String>();
+    private LinkedList<String> tokenizedPage = new LinkedList<String>();
 
     public BPage()
     {
         super();
     }
 
+    /**
+     *
+     * @param page
+     */
     public void setUnTokenizedPage(String page)
     {
         this.unTokenizedPage = page;
     }
 
-    public void setTokenizedPage(ArrayList<String> page)
+    /**
+     *
+     * @param page
+     */
+    public void setTokenizedPage(LinkedList<String> page)
     {
         this.tokenizedPage = page;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getUnTokenizedPage()
     {
         return this.unTokenizedPage;
     }
 
-    public ArrayList<String> getTokenizedPage()
+    /**
+     *
+     * @return
+     */
+    public LinkedList<String> getTokenizedPage()
     {
         return this.tokenizedPage;
     }
 
+    /**
+     *
+     * @param pdfFile
+     * @param pageNumber
+     */
     public void getPDFTextByPage(File pdfFile, int pageNumber)
     {
         StringBuffer sb = new StringBuffer();
@@ -62,6 +85,10 @@ public class BPage
         this.unTokenizedPage = sb.toString();
     }
 
+    /**
+     *
+     * @param language
+     */
     public void tokenize(String language)
     {
         ArrayList<String> sentences = new ArrayList<String>();
@@ -75,16 +102,20 @@ public class BPage
             boundary = sentenceIterator.next();
             if(boundary != BreakIterator.DONE)
             {
-                this.tokenizedPage.add(this.unTokenizedPage.substring(lastBoundary, boundary));
+                String substring = this.unTokenizedPage.substring(lastBoundary,boundary);
+                this.tokenizedPage.add(substring);
             }
             lastBoundary = boundary;
         }
     }
 
+    /**
+     *
+     */
     public void replaceNewLines()
     {
-        ArrayList<String> newLines = this.tokenizedPage;
-        ArrayList<String> lines = new ArrayList<String>();
+        List<String> newLines = this.tokenizedPage;
+        LinkedList<String> lines = new LinkedList<String>();
         this.tokenizedPage = null;
 
         for(String s: newLines)
@@ -93,10 +124,5 @@ public class BPage
             lines.add(str);
         }
         this.tokenizedPage = lines;
-    }
-
-    public void writePage()
-    {
-
     }
 }

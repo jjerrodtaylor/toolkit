@@ -4,9 +4,11 @@ import edu.insf.toolkit.Models.BPage;
 import edu.insf.toolkit.Models.Chapter;
 import edu.insf.toolkit.Models.ParallelPage;
 import edu.insf.toolkit.Tools.Constants;
-
+import org.odftoolkit.simple.TextDocument;
 import java.io.File;
+import java.util.AbstractQueue;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.Locale;
 import edu.insf.toolkit.DesignPatterns.FluidInterfaceHTML.*;
 import edu.insf.toolkit.Tools.FileHelper;
@@ -17,70 +19,40 @@ public class TestIt {
     public static void main(final String args[])
     {
         FileHelper fileHelper = new FileHelper();
-        BPage firstChapter = new BPage();
-        ParallelPage parallelPage = new ParallelPage();
-        HTMLPage html = new HTMLPage();
-        Chapter chapter = new Chapter();
-        Hunalign aligner = new Hunalign();
-        ArrayList<BPage> pages = new ArrayList<BPage>();
+        ArrayList<String> chapter1 = fileHelper.readFileToMemory(Constants.alignedFilePath("aligned_eng-esp.txt"));
+        ParallelPage page = new ParallelPage();
+        LinkedList<LinkedList<String>> seperatedTexts = page.divideLadderText(chapter1);
 
-        //For the english pg 1-8 ch.1
-
-        //get the text from the pdfs
-        for(int i=0;i<8;i++)
+        try
         {
-            BPage page = new BPage();
-            page.getPDFTextByPage(fileHelper.turnToFile(Constants.pdfFilePath("metamorph_eng.pdf")),i);
-            fileHelper.writeFile(page.getUnTokenizedPage(),Constants.rawFilePath("metamorph_eng_"+String.valueOf(i)+".txt"));
+            TextDocument textDocument = TextDocument.newTextDocument();
+
+            int pagesInChapter = 8;
+            int sectionsPerPage = seperatedTexts.get(0).size()/pagesInChapter;
+            int j = 0;
+            for(double i=seperatedTexts.get(1).size(); i> -1;i = i-.5)
+            {
+                if(j<sectionsPerPage)
+                {
+                    textDocument.addParagraph(seperatedTexts.get(0).pollFirst());
+                    j++;
+                }
+                else
+                {
+                    textDocument.addParagraph(seperatedTexts.get(1).pollFirst());
+                    j++;
+
+                    if(j==sectionsPerPage*2)
+                    {
+                        j= 0;
+                    }
+                }
+            }
+            textDocument.save("chapter1.odt");
         }
-
-        File folder = new File(Constants.rawFilePath(""));
-        File[] allFiles = folder.listFiles();
-        //read the files into memory
-        ArrayList<ArrayList<String>> allPages = new ArrayList<ArrayList<String>>();
-
-        for(int i=0;i<allFiles.length;i++)
+        catch (Exception e)
         {
-            String filePath = Constants.rawFilePath("metamorph_eng_"+String.valueOf(i)+".txt");
-            ArrayList<String> pageToAdd = fileHelper.readFileToMemory(filePath);
-            allPages.add(pageToAdd);
+            e.printStackTrace();
         }
-
-        String allPagesAsString = "";
-
-        for(int i=0;i<allPages.size();i++)
-        {
-            allPagesAsString = allPagesAsString+fileHelper.turnListToString(allPages.get(i));
-        }
-
-        firstChapter.setUnTokenizedPage(allPagesAsString);
-        firstChapter.tokenize(Languages.ENGLISH);
-
-
-
-        /*
-        File file = fileHelper.turnToFile(Constants.METAMORPH_ENG);
-        firstPage.getPDFTextByPage(file,0);
-        fileHelper.writeFile(firstPage.getUnTokenizedPage(), Constants.METAMORPH_ENG_TXT);
-
-        firstPage.tokenize(Languages.ENGLISH);
-        firstPage.replaceNewLines();
-        fileHelper.writeFile(firstPage.getTokenizedPage(), Constants.METAMORPH_ENG_TXT_FMT);
-
-        //For the spanish
-        file = fileHelper.turnToFile(Constants.METAMORPH_ESP);
-        firstPage.getPDFTextByPage(file, 1);
-        fileHelper.writeFile(firstPage.getUnTokenizedPage(), Constants.METAMORPH_ESP_TXT);
-
-        firstPage.tokenize(Languages.SPANISH);
-        firstPage.replaceNewLines();
-        fileHelper.writeFile(firstPage.getTokenizedPage(), Constants.METAMORPH_ESP_TXT_FMT);
-
-        String page = html.makePage(parallelPage);
-        fileHelper.writeFile(page,"testpage.html");
-        ArrayList<ParallelPage> listOfPages = new ArrayList<ParallelPage>();
-        listOfPages.add(parallelPage);
-
-        chapter.writeChapter(listOfPages,1); */
     }
 }

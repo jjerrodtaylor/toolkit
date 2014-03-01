@@ -15,12 +15,30 @@ public class IOBufferedWriter extends IOBuffered
         construct(filePath);
     }
 
+    public IOBufferedWriter(String filePath, boolean append)
+    {
+        super(IOType.BUFFERED_WRITTER);
+        construct(filePath, append);
+    }
+
     @Override
     protected void construct(String filePath)
     {
         try
         {
             this.bw = new BufferedWriter(new FileWriter(filePath));
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    protected void construct (String filePath, boolean append)
+    {
+        try
+        {
+            this.bw = new BufferedWriter(new FileWriter(filePath, true));
         }
         catch (IOException e)
         {

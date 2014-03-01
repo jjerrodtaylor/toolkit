@@ -1,12 +1,13 @@
 package edu.insf.toolkit.Models;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class ParallelPage extends BPage
 {
     BPage l1 = new BPage();
     BPage l2 = new BPage();
-    ArrayList<ArrayList<String>> undividedTexts = new ArrayList<ArrayList<String>>();
+    ArrayList<LinkedList<String>> undividedTexts = new ArrayList<LinkedList<String>>();
 
     public ParallelPage()
     {
@@ -33,27 +34,27 @@ public class ParallelPage extends BPage
         this.l2 = l2;
     }
 
-    public ArrayList<ArrayList<String>> getUndividedTexts()
+    public ArrayList<LinkedList<String>> getUndividedTexts()
     {
         return undividedTexts;
     }
 
-    public void setUndividedTexts(ArrayList<ArrayList<String>> undividedTexts)
+    public void setUndividedTexts(ArrayList<LinkedList<String>> undividedTexts)
     {
         this.undividedTexts = undividedTexts;
     }
 
-    public void divideLadderText(ArrayList<String> combinedText)
+    public LinkedList<LinkedList<String>> divideLadderText(ArrayList<String> combinedText)
     {
         String[] newStrings;
-        ArrayList<ArrayList<String>> seperatedTexts = new ArrayList<ArrayList<String>>();
-        ArrayList<String> l1Text = new ArrayList<String>();
-        ArrayList<String> l2Text = new ArrayList<String>();
+        LinkedList<LinkedList<String>> seperatedTexts = new LinkedList<LinkedList<String>>();
+        LinkedList<String> l1Text = new LinkedList<String>();
+        LinkedList<String> l2Text = new LinkedList<String>();
 
         for(String s: combinedText)
         {
             newStrings = s.split("\\t");
-            if(newStrings.length == 2)
+            if(newStrings.length == 2 | newStrings.length == 3)
             {
                 l1Text.add(newStrings[0]);
                 l2Text.add(newStrings[1]);
@@ -67,5 +68,8 @@ public class ParallelPage extends BPage
 
         this.getL1().setTokenizedPage(l1Text);
         this.getL2().setTokenizedPage(l2Text);
+        seperatedTexts.add(l1Text);
+        seperatedTexts.add(l2Text);
+        return seperatedTexts;
     }
 }

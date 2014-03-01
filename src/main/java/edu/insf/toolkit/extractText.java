@@ -18,8 +18,6 @@ public class extractText {
         FileHelper fileHelper = new FileHelper();
         BPage firstChapter;
 
-        //create the dirctory in raw if it doesn't exist
-        //turn this into function later
         Constants.makeDirectory(fileHelper.turnToFile(Constants.rawFilePath(Languages.ENGLISH)));
         Constants.makeDirectory(fileHelper.turnToFile(Constants.rawFilePath(Languages.SPANISH)));
         //For the english pg 0-8 ch.1
@@ -30,14 +28,6 @@ public class extractText {
             firstChapter = new BPage();
             firstChapter.getPDFTextByPage(fileHelper.turnToFile(Constants.pdfFilePath("metamorph_eng.pdf")),i);
             fileHelper.writeFile(firstChapter.getUnTokenizedPage(),Constants.rawFilePath("/eng/metamorph_eng_"+String.valueOf(i)+".txt"));
-        }
-
-        //1-9 for the spanish
-        for(int i=1;i<10;i++)
-        {
-            firstChapter = new BPage();
-            firstChapter.getPDFTextByPage(fileHelper.turnToFile(Constants.pdfFilePath("metamorph_esp.pdf")),i);
-            fileHelper.writeFile(firstChapter.getUnTokenizedPage(),Constants.rawFilePath("/spa/metamorph_esp_"+String.valueOf(i)+".txt"));
         }
 
         //do manual editing at this step.

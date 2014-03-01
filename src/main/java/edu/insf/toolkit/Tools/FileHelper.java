@@ -1,10 +1,16 @@
 package edu.insf.toolkit.Tools;
 
+import edu.insf.toolkit.DesignPatterns.FluidInterfaceHTML.HTMLPage;
 import edu.insf.toolkit.DesignPatterns.IOTypeFactory.*;
+import edu.insf.toolkit.Hunalign;
 import edu.insf.toolkit.Models.BPage;
+import edu.insf.toolkit.Models.Chapter;
+import edu.insf.toolkit.Models.ParallelPage;
 import org.odftoolkit.simple.TextDocument;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 public class FileHelper {
     IOBufferedWriter  bw = null;
@@ -43,15 +49,67 @@ public class FileHelper {
         }
     }
 
+    public void writeFile(String stringToWrite, String nameOfFile, boolean append)
+    {
+        this.bw = IOFactory.buildIOBufferedWriter(nameOfFile, append);
+        try
+        {
+            this.bw.getBufferedWriter().write(stringToWrite);
+            this.bw.getBufferedWriter().newLine();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+        finally
+        {
+            try
+            {
+                this.bw.getBufferedWriter().flush();
+                this.bw.getBufferedWriter().close();
+            }
+            catch (IOException e)
+            {
+                e.printStackTrace();
+            }
+        }
+    }
 
     /**
      * Function takes an Arraylist of Strings as well as the path for where the file should be written to.
      * @param linesToWrite
      * @param nameOfFile
      */
-    public void writeFile(ArrayList<String> linesToWrite, String nameOfFile)
+    public void writeFile(List<String> linesToWrite, String nameOfFile)
     {
         this.bw = IOFactory.buildIOBufferedWriter(nameOfFile);
+
+        for(String s: linesToWrite)
+        {
+            try
+            {
+                this.bw.getBufferedWriter().write(s);
+                this.bw.getBufferedWriter().newLine();
+            }
+            catch (IOException e)
+            {
+                e.printStackTrace();
+            }
+        }
+        try
+        {
+            this.bw.getBufferedWriter().flush();
+            this.bw.getBufferedWriter().close();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    public void writeFile(List<String> linesToWrite, String nameOfFile, boolean append)
+    {
+        this.bw = IOFactory.buildIOBufferedWriter(nameOfFile, append);
 
         for(String s: linesToWrite)
         {
@@ -86,7 +144,7 @@ public class FileHelper {
             for(int i=0;i<pages.size();i++)
             {
                 //go through each paragraph in the page
-                ArrayList<String> page = pages.get(i).getTokenizedPage();
+                LinkedList<String> page = pages.get(i).getTokenizedPage();
                 for(int j=0;j<page.size();j++)
                 {
                     textDocument.addParagraph(page.get(j));
@@ -101,36 +159,30 @@ public class FileHelper {
         }
     }
 
-    public void writeChapter(ArrayList<ArrayList<String>>  chapter, int chapterNumber)
+    public void writeChapter(int startNumber, int endNumber, String language, String fileName1, String fileName2, String fileName3)
     {
-        String nameOfFile = "chapter";
+        FileHelper fileHelper = new FileHelper();
+        BPage firstPage = new BPage();
+        Chapter chapter = new Chapter();
+        ArrayList<BPage> pages = new ArrayList<BPage>();
 
-        //you have to make the loop twice as big because you have two books
-        for(double i = 0; i<chapter.size();i=i+.5)
+        //get the text from the pdf as a page and write the entire chapter as one file
+        File file = fileHelper.turnToFile(fileName1);
+        for(int i=startNumber;i<endNumber;i++)
         {
-            nameOfFile = "chapter"+"_"+String.valueOf(chapterNumber)+"_page_"+String.valueOf(i)+".txt";
-            this.bw = IOFactory.buildIOBufferedWriter(nameOfFile);
-
-            try
-            {
-                //if you are on an odd page
-                if(i%1 == 0)
-                {
-                    this.bw.getBufferedWriter().write(chapter.get(0).get((int)i));
-                }
-                else
-                {
-                    this.bw.getBufferedWriter().write(chapter.get(1).get((int)i));
-                }
-
-                this.bw.getBufferedWriter().flush();
-                this.bw.getBufferedWriter().close();
-            }
-            catch (IOException e)
-            {
-                e.printStackTrace();
-            }
+            firstPage.getPDFTextByPage(file,i);
+            fileHelper.writeFile(firstPage.getUnTokenizedPage(), fileName2,true);
         }
+
+        //read the new file back in and turn it into a string
+        ArrayList<String> firstChapter = fileHelper.readFileToMemory(fileName2);
+        String firstChapterAsString = fileHelper.turnListToString(firstChapter);
+        firstPage.setUnTokenizedPage(firstChapterAsString);
+        fileHelper.writeFile(firstPage.getUnTokenizedPage(),Constants.partiallyprocessedFilePath("test.txt"));
+        //tokenize the page and write the file
+        firstPage.tokenize(language);
+        firstPage.replaceNewLines();
+        fileHelper.writeFile(firstPage.getTokenizedPage(), fileName3,true);
     }
 
     public ArrayList<String> readFileToMemory(String filepath)
@@ -167,13 +219,15 @@ public class FileHelper {
 
     public String turnListToString(ArrayList<String> listOfStrings)
     {
-        String longString = "";
+        StringBuilder longString = new StringBuilder(11000);
 
         for(int i =0; i < listOfStrings.size()-1; i++)
         {
-            longString += listOfStrings.get(i);
+            longString.append(" ");
+            longString.append(listOfStrings.get(i));
+            longString.append(" ");
         }
-        return longString;
+        return longString.toString();
     }
 
 }
