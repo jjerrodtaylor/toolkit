@@ -1,8 +1,9 @@
 package edu.insf.toolkit;
 
+import edu.insf.toolkit.Tools.Constants;
+import edu.insf.toolkit.Tools.TextExtractor;
 import org.junit.Test;
-import org.junit.Before;
-import java.util.ArrayList;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.*;
 import java.io.File;

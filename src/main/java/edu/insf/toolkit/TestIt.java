@@ -1,13 +1,14 @@
 package edu.insf.toolkit;
 
-import edu.insf.toolkit.Constants;
-import edu.insf.toolkit.TextTokenizer;
-import edu.insf.toolkit.TextExtractor;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Locale;
-import edu.insf.toolkit.DesignPatterns.FluidInterfaceHTML.*;
-import edu.insf.toolkit.Hunalign;
+import edu.insf.toolkit.HTML.HTMLPage;
+import edu.insf.toolkit.Tools.Constants;
+import edu.insf.toolkit.Tools.FileHelper;
+import edu.insf.toolkit.Tools.TextExtractor;
+import edu.insf.toolkit.Tools.TextTokenizer;
+//import edu.insf.toolkit.Hunalign;
 
 public class TestIt {
 
@@ -17,14 +18,16 @@ public class TestIt {
         TextExtractor textExtractor = new TextExtractor();
         TextTokenizer textTokenizer = new TextTokenizer();
         HTMLPage html = new HTMLPage();
-        Hunalign aligner = new Hunalign();
 
         //For the english
         File file = fileHelper.turnToFile(Constants.METAMORPH_ENG);
         String firstPage = textExtractor.getPDFTextByPage(file, 0);
+
+        textExtractor.getChapter(file,0,7);
         fileHelper.writeFile(firstPage, Constants.METAMORPH_ENG_TXT);
 
         ArrayList<String> list = textTokenizer.tokenize(firstPage, Locale.US);
+        String test = list.toString();
         list = textTokenizer.replaceNewLines(list);
         fileHelper.writeFile(list, Constants.METAMORPH_ENG_TXT_FMT);
 
@@ -43,8 +46,6 @@ public class TestIt {
 
         String page = html.makePage(seperateTexts);
         fileHelper.writeFile(page,"testpage.html");
-
-        aligner.runHunalign();
 
         int i=0;
     }

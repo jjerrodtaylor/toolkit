@@ -1,8 +1,9 @@
 package edu.insf.toolkit;
 
-import edu.insf.toolkit.Pattern;
-import edu.insf.toolkit.Constants;
-import edu.insf.toolkit.FileHelper;
+import edu.insf.toolkit.Tools.Constants;
+import edu.insf.toolkit.Tools.FileHelper;
+import edu.insf.toolkit.Tools.Helper;
+import edu.insf.toolkit.Tools.Pattern;
 import org.junit.Before;
 import org.junit.Test;
 import java.util.ArrayList;

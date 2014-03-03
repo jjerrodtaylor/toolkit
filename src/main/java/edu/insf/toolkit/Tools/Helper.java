@@ -1,4 +1,6 @@
-package edu.insf.toolkit;
+package edu.insf.toolkit.Tools;
+
+import edu.insf.toolkit.Tools.Pattern;
 
 import java.io.*;
 import java.util.ArrayList;

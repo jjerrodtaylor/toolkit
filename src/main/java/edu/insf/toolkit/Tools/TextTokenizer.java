@@ -1,11 +1,9 @@
-package edu.insf.toolkit;
+package edu.insf.toolkit.Tools;
 
-import java.io.BufferedWriter;
-import java.io.IOException;
+import edu.insf.toolkit.Tools.FileHelper;
+
 import java.text.BreakIterator;
 import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Locale;
 
 /**

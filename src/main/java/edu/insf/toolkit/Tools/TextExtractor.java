@@ -1,8 +1,8 @@
-package edu.insf.toolkit;
+package edu.insf.toolkit.Tools;
 
 import com.snowtide.pdf.*;
 import com.snowtide.pdf.PDFTextStream;
-import edu.insf.toolkit.DesignPatterns.Singletons.SingletonBufferedWriter;
+import edu.insf.toolkit.Tools.FileHelper;
 
 import java.io.*;
 import java.util.ArrayList;

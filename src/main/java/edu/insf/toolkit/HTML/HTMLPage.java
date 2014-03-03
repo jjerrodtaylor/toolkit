@@ -1,6 +1,8 @@
 package edu.insf.toolkit.HTML;
 
 
+import java.util.ArrayList;
+
 public class HTMLPage
 {
     public HTMLPage()
@@ -10,94 +12,134 @@ public class HTMLPage
 
     private String page = "";
 
-    public String openHtml()
+    public HTMLPage openHtml()
     {
-        page = page+"<html>";
-        return page;
+        page = page+"<html>" + System.getProperty("line.separator");
+        return this;
     }
 
-    public String closeHtml()
+    public HTMLPage closeHtml()
     {
-        page = page+"</html>";
-        return page;
+        page = page+"</html>" + System.getProperty("line.separator");
+        return this;
     }
 
-    public String openTable()
+    public HTMLPage openTable()
     {
-        page = page+"<table>";
-        return page;
+        page = page+"<table>" + System.getProperty("line.separator");
+        return this;
     }
 
-    public String closeTable()
+    public HTMLPage closeTable()
     {
-        page = page+"</table>";
-        return page;
+        page = page+"</table>" + System.getProperty("line.separator");
+        return this;
     }
 
-    public String openBody()
+    public HTMLPage openBody()
     {
-        page = page+"<body>";
-        return page;
+        page = page+"<body>" + System.getProperty("line.separator");
+        return this;
     }
 
-    public String closeBody()
+    public HTMLPage closeBody()
     {
-        page = page+"</body>";
-        return page;
+        page = page+"</body>" + System.getProperty("line.separator");
+        return this;
     }
 
-    public String openHead()
+    public HTMLPage openHead()
     {
-        page = page+"<head>";
-        return page;
+        page = page+"<head>" + System.getProperty("line.separator");
+        return this;
     }
 
-    public String closeHead()
+    public HTMLPage closeHead()
     {
-        page = page+"</head>";
-        return page;
+        page = page+"</head>" + System.getProperty("line.separator");
+        return this;
     }
 
-    public String openDiv()
+    public HTMLPage openDiv()
     {
-        page = page+"<div>";
-        return page;
+        page = page+"<div>" + System.getProperty("line.separator");
+        return this;
     }
 
-    public String closeDiv()
+    public HTMLPage closeDiv()
     {
-        page = page+"</div>";
-        return page;
+        page = page+"</div>" + System.getProperty("line.separator");
+        return this;
     }
 
-    public String openTD()
+    public HTMLPage openTD()
     {
-        page = page+"<td>";
-        return page;
+        page = page+"<td>" + System.getProperty("line.separator");
+        return this;
     }
 
-    public String closeTD()
+    public HTMLPage closeTD()
     {
-        page = page+"</td>";
-        return page;
+        page = page+"</td>" + System.getProperty("line.separator");
+        return this;
     }
 
-    public String openTR()
+    public HTMLPage openTR()
     {
-        page = page+"<tr>";
-        return page;
+        page = page+"<tr>" + System.getProperty("line.separator");
+        return this;
     }
 
-    public String closeTR()
+    public HTMLPage closeTR()
     {
-        page = page+"</tr>";
-        return page;
+        page = page+"</tr>" + System.getProperty("line.separator");
+        return this;
     }
 
-    public String addContent(String content)
+    public HTMLPage openP()
     {
-        page = page+content;
-        return page;
+        page = page+"<p>" + System.getProperty("line.separator");
+        return this;
+    }
+
+    public HTMLPage closeP()
+    {
+        page = page+"</p>" + System.getProperty("line.separator");
+        return this;
+    }
+
+    public HTMLPage addContent(String content)
+    {
+        page = page+content + System.getProperty("line.separator");
+        return this;
+    }
+
+    public String makePage(ArrayList<ArrayList<String>> content)
+    {
+        this.openHtml()
+                .openBody()
+                .openTable();
+
+        for(int i=0;i<content.get(0).size(); i++)
+        {
+            this.openTR()
+                    .openTD()
+                    .openP()
+                    .addContent(content.get(0).get(i))
+                    .closeP()
+                    .closeTD()
+                    .openTD()
+                    .openP()
+                    .addContent(content.get(1).get(i))
+                    .closeP()
+                    .closeTD()
+                    .closeTR();
+        }
+        this.closeTable()
+                .closeBody()
+                .closeHtml();
+
+        return this.page;
     }
 
 
