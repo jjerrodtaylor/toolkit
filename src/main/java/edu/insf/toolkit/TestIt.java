@@ -20,7 +20,7 @@ public class TestIt {
         HTMLPage html = new HTMLPage();
 
         //For the english
-        File file = fileHelper.turnToFile(Constants.METAMORPH_ENG);
+        /*File file = fileHelper.turnToFile(Constants.METAMORPH_ENG);
         String firstPage = textExtractor.getPDFTextByPage(file, 0);
 
         textExtractor.getChapter(file,0,7);
@@ -38,7 +38,7 @@ public class TestIt {
 
         list = textTokenizer.tokenize(firstPage,"spa");
         list = textTokenizer.replaceNewLines(list);
-        fileHelper.writeFile(list, Constants.METAMORPH_ESP_TXT_FMT);
+        fileHelper.writeFile(list, Constants.METAMORPH_ESP_TXT_FMT); */
 
         //The combined languages
         ArrayList<String> combinedText = fileHelper.readFileToMemory(Constants.METAMORPH_ENG_ESP_TXT);
@@ -47,6 +47,5 @@ public class TestIt {
         String page = html.makePage(seperateTexts);
         fileHelper.writeFile(page,"testpage.html");
 
-        int i=0;
     }
 }

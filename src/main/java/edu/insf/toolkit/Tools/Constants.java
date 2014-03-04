@@ -16,7 +16,7 @@ public class Constants
     public static String METAMORPH_ENG_TXT_FMT = Constants.makeFilePath("/src/test/resources/metamorph_eng_fmt.txt");
     public static String METAMORPH_ESP_TXT_FMT = Constants.makeFilePath("/src/test/resources/metamorph_esp_fmt.txt");
     public static String TEST_FILE = Constants.makeFilePath("/src/test/resources/testfile.txt");
-    public static String METAMORPH_ENG_ESP_TXT = Constants.makeFilePath("/src/test/resources/metamorph-en-es.txt");
+    public static String METAMORPH_ENG_ESP_TXT = Constants.makeFilePath("/src/test/resources/fullyprocessed/Kafka_Franz-Verwandlung-en-es.txt");
 
     public static String makeFilePath(String addition)
     {
