@@ -7,6 +7,8 @@ import java.io.File;
  */
 public class Constants
 {
+    public String root = "/src/test/resources";
+    public static String TEST_FILE = Constants.makeFilePath("/src/test/resources/testfile.txt");
     public static String READ_FILE_NAME = null;
     public static String WRITE_FILE_NAME = null;
     public static String METAMORPH_ENG = Constants.makeFilePath("/src/test/resources/pdf/metamorph_eng.pdf");
@@ -15,8 +17,43 @@ public class Constants
     public static String METAMORPH_ESP_TXT = Constants.makeFilePath("/src/test/resources/metamorph_esp.txt");
     public static String METAMORPH_ENG_TXT_FMT = Constants.makeFilePath("/src/test/resources/metamorph_eng_fmt.txt");
     public static String METAMORPH_ESP_TXT_FMT = Constants.makeFilePath("/src/test/resources/metamorph_esp_fmt.txt");
-    public static String TEST_FILE = Constants.makeFilePath("/src/test/resources/testfile.txt");
-    public static String METAMORPH_ENG_ESP_TXT = Constants.makeFilePath("/src/test/resources/fullyprocessed/Kafka_Franz-Verwandlung-en-es.txt");
+    public static String METAMORPH_ENG_ESP_TXT = Constants.makeFilePath("/src/test/resources/processed/Kafka_Franz-Verwandlung-en-es.txt");
+
+
+    public Constants()
+    {
+        super();
+    }
+
+    public String pdfs(String fileName)
+    {
+        String address = root+"/pdfs/"+fileName;
+        return Constants.makeFilePath(address);
+    }
+
+    public String books(String fileName)
+    {
+        String address = root+"/books/"+fileName;
+        return Constants.makeFilePath(address);
+    }
+
+    public String tokenized(String fileName)
+    {
+        String address = root+"/tokenized/"+fileName;
+        return Constants.makeFilePath(address);
+    }
+
+    public String processed(String fileName)
+    {
+        String address = root+"/processed/"+fileName;
+        return Constants.makeFilePath(address);
+    }
+
+    public String aligned(String fileName)
+    {
+        String address = root+"/aligned/"+fileName;
+        return Constants.makeFilePath(address);
+    }
 
     public static String makeFilePath(String addition)
     {
