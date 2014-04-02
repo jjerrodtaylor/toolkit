@@ -46,6 +46,8 @@ public class TextTokenizer
         locale = new Locale(language,country,variant);
     }
 
+
+
     public ArrayList<String> tokenize(String text, Locale locale)
     {
         ArrayList<String> sentences = new ArrayList<String>();
@@ -97,7 +99,7 @@ public class TextTokenizer
         return newLines;
     }
 
-    public ArrayList<ArrayList<String>> divideText(ArrayList<String> combinedText)
+    public ArrayList<ArrayList<String>> divideText(ArrayList<String> combinedText, Integer text1, Integer text2)
     {
         String[] newStrings;
         ArrayList<ArrayList<String>> seperatedTexts = new ArrayList<ArrayList<String>>();
@@ -107,10 +109,10 @@ public class TextTokenizer
         for(String s: combinedText)
         {
             newStrings = s.split("\\t");
-            if(newStrings.length == 2)
+            if(newStrings.length >= 2)
             {
-                l1Text.add(newStrings[0]);
-                l2Text.add(newStrings[1]);
+                l1Text.add(newStrings[text1]);
+                l2Text.add(newStrings[text2]);
             }
             else
             {

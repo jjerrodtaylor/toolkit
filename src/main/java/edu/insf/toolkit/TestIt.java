@@ -20,11 +20,12 @@ public class TestIt {
         HTMLPage html = new HTMLPage();
 
         //For the english
-        /*File file = fileHelper.turnToFile(Constants.METAMORPH_ENG);
-        String firstPage = textExtractor.getPDFTextByPage(file, 0);
+        /*File file = fileHelper.turnToFile(Constants.ALICE_ES);
+        String firstPage = textExtractor.getPDFTextByPage(file, 2);
 
-        textExtractor.getChapter(file,0,7);
-        fileHelper.writeFile(firstPage, Constants.METAMORPH_ENG_TXT);
+        ArrayList<String> firstChapter = textExtractor.getChapter(file,0,51);
+
+        fileHelper.writeFile(firstChapter, "alice_es_test.txt");
 
         ArrayList<String> list = textTokenizer.tokenize(firstPage, Locale.US);
         String test = list.toString();
@@ -38,14 +39,14 @@ public class TestIt {
 
         list = textTokenizer.tokenize(firstPage,"spa");
         list = textTokenizer.replaceNewLines(list);
-        fileHelper.writeFile(list, Constants.METAMORPH_ESP_TXT_FMT); */
+        fileHelper.writeFile(list, Constants.METAMORPH_ESP_TXT_FMT);
 
         //The combined languages
         ArrayList<String> combinedText = fileHelper.readFileToMemory(Constants.METAMORPH_ENG_ESP_TXT);
-        ArrayList<ArrayList<String>> seperateTexts = textTokenizer.divideText(combinedText);
+        ArrayList<ArrayList<String>> seperateTexts = textTokenizer.divideText(combinedText,0,1);
 
         String page = html.makePage(seperateTexts);
-        fileHelper.writeFile(page,"testpage.html");
+        fileHelper.writeFile(page,"testpage.html"); */
 
     }
 }
