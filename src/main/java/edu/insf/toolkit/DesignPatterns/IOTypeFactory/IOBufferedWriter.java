@@ -18,7 +18,7 @@ public class IOBufferedWriter extends IOBuffered
     {
         try
         {
-            this.bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(filePath),"UTF-8"));
+            this.bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(filePath),"UTF8"));
         }
         catch (IOException e)
         {

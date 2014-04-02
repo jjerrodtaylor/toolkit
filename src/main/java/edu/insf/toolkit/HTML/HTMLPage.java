@@ -50,7 +50,7 @@ public class HTMLPage
 
     public HTMLPage openHead()
     {
-        page = page+"<head>" + System.getProperty("line.separator");
+        page = page+"<head>"+ System.getProperty("line.separator")+"<meta charset=\"utf-8\"/>";
         return this;
     }
 
@@ -117,6 +117,8 @@ public class HTMLPage
     public String makePage(ArrayList<ArrayList<String>> content)
     {
         this.openHtml()
+                .openHead()
+                .closeHead()
                 .openBody()
                 .openTable();
 
