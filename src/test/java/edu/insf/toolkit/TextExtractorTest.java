@@ -3,7 +3,6 @@ package edu.insf.toolkit;
 import edu.insf.toolkit.Tools.Constants;
 import edu.insf.toolkit.Tools.TextExtractor;
 import org.junit.Test;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.*;
 import java.io.File;
@@ -28,7 +27,7 @@ public class TextExtractorTest
         assertEquals(testFile.getAbsolutePath(), file.getAbsolutePath());
     }
 
-    @Test
+    //@Test
     public void testGetPDFTextByPage()
     {
         File file = textExtractor.turnToFile(Constants.METAMORPH_ESP);
