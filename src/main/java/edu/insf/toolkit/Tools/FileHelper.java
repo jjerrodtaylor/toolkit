@@ -1,9 +1,11 @@
 package edu.insf.toolkit.Tools;
 
 import edu.insf.toolkit.DesignPatterns.IOTypeFactory.*;
+import edu.main.NewCommandLineArguments;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class FileHelper {
     IOBufferedWriter  bw = null;
@@ -47,7 +49,7 @@ public class FileHelper {
      * @param linesToWrite
      * @param nameOfFile
      */
-    public void writeFile(ArrayList<String> linesToWrite, String nameOfFile)
+    public void writeFile(List<String> linesToWrite, String nameOfFile)
     {
         this.bw = IOFactory.buildIOBufferedWriter(nameOfFile);
 
@@ -74,6 +76,50 @@ public class FileHelper {
         }
     }
 
+    public void writeSettingsFile(String filePath)
+    {
+        Constants constants = new Constants();
+        this.bw = IOFactory.buildIOBufferedWriter(filePath);
+        try
+        {
+            this.bw.getBufferedWriter().write("l1="+constants.jmaxalign("files/l1.txt"));
+            this.bw.getBufferedWriter().newLine();
+            this.bw.getBufferedWriter().write("l2="+constants.jmaxalign("files/l2.txt"));
+            this.bw.getBufferedWriter().newLine();
+            this.bw.getBufferedWriter().flush();
+            this.bw.getBufferedWriter().close();
+
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    public void createTrainingFile(String inputFilePath, NewCommandLineArguments cmds, String fileName)
+    {
+        ArrayList<String> fullFile = readFileToMemory(inputFilePath);
+        int trainingSize = fullFile.size()/10;
+
+        List<String> trainingFile = fullFile.subList(0,trainingSize);
+        String name = cmds.getTrainDir() + fileName;
+        writeFile(trainingFile,name);
+    }
+
+    public int getNumSentenceFromFile(String inputFilePath, int percentUsed)
+    {
+        ArrayList<String> fullFile = readFileToMemory(inputFilePath);
+        return fullFile.size()/percentUsed;
+    }
+
+    public void createTestingFile(String inputFilePath, NewCommandLineArguments cmds, String fileName)
+    {
+        ArrayList<String> fullFile = readFileToMemory(inputFilePath);
+        int trainingSize = fullFile.size()/10;
+
+        List<String> testingFile = fullFile.subList(trainingSize,fullFile.size()-1);
+        String name = cmds.getTestDir() + fileName;
+    }
     public ArrayList<String> readFileToMemory(String filepath)
     {
         this.br = IOFactory.buildIOBufferedReader(filepath);
