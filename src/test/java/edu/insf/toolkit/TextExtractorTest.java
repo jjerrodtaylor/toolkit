@@ -6,6 +6,7 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.*;
 import java.io.File;
+import java.util.ArrayList;
 
 /**
  * Created with IntelliJ IDEA.
@@ -20,7 +21,7 @@ public class TextExtractorTest
     public TextExtractor textExtractor = new TextExtractor();
     public File testFile = new File(Constants.METAMORPH_ESP);
 
-    @Test
+    //@Test
     public void testTurnToFile()
     {
         File file = textExtractor.turnToFile(Constants.METAMORPH_ESP);
