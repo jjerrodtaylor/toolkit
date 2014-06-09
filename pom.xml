@@ -22,24 +22,15 @@
                 <enabled>true</enabled>
             </releases>
         </repository>
+        <repository>
+            <id>git-jjerrodtaylor</id>
+            <name>jjerrodtaylor's epub repo</name>
+            <url>https://github.com/jjerrodtaylor/epub/blob/mvn-repo/com/bilingualing/epub/epub/1.0-SNAPSHOT/epub-1.0-20140418.012523-1.jar</url>
+        </repository>
     </repositories>
 
     <build>
         <plugins>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>emma-maven-plugin</artifactId>
-                <version>1.0-alpha-3</version>
-                <inherited>true</inherited>
-                <executions>
-                    <execution>
-                        <phase>process-classes</phase>
-                        <goals>
-                            <goal>instrument</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -69,6 +60,16 @@
 
   <dependencies>
       <dependency>
+          <groupId>org.apache.tika</groupId>
+          <artifactId>tika-core</artifactId>
+          <version>1.5</version>
+      </dependency>
+      <dependency>
+          <groupId>org.apache.tika</groupId>
+          <artifactId>tika-parsers</artifactId>
+          <version>1.5</version>
+      </dependency>
+      <dependency>
           <groupId>com.snowtide</groupId>
           <artifactId>pdftextstream</artifactId>
           <version>2.6.4</version>
@@ -79,19 +80,14 @@
           <version>4.10</version>
       </dependency>
       <dependency>
-          <groupId>org.odftoolkit</groupId>
-          <artifactId>simple-odf</artifactId>
-          <version>0.6</version>
+          <groupId>org.jsoup</groupId>
+          <artifactId>jsoup</artifactId>
+          <version>1.7.2</version>
       </dependency>
       <dependency>
-          <groupId>org.odftoolkit</groupId>
-          <artifactId>odfdom-java</artifactId>
-          <version>0.8.7</version>
-      </dependency>
-      <dependency>
-          <groupId>xerces</groupId>
-          <artifactId>xercesImpl</artifactId>
-          <version>2.9.1</version>
+          <groupId>edu</groupId>
+          <artifactId>jmaxalign</artifactId>
+          <version>2.0</version>
       </dependency>
   </dependencies>
 </project>

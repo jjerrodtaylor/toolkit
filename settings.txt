@@ -1,0 +1,9 @@
+root = /Users/jamaaltaylor/Documents/toolkit/
+l1=en
+l2=de
+positiveTrainingSentences=300
+negativeTrainingSentences=300
+positiveTestingSentences=700
+negativeTestingSentences=700
+positiveEvalSentences=
+negativeEvalSentences=

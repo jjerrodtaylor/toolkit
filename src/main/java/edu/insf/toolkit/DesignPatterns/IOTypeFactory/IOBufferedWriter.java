@@ -1,8 +1,6 @@
 package edu.insf.toolkit.DesignPatterns.IOTypeFactory;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 
 
 public class IOBufferedWriter extends IOBuffered
@@ -26,7 +24,7 @@ public class IOBufferedWriter extends IOBuffered
     {
         try
         {
-            this.bw = new BufferedWriter(new FileWriter(filePath));
+            this.bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(filePath),"UTF8"));
         }
         catch (IOException e)
         {

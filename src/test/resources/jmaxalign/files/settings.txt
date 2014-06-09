@@ -1,0 +1,2 @@
+l1=/Users/jamaaltaylor/Documents/toolkit/src/test/resources/jmaxalign/files/l1.txt
+l2=/Users/jamaaltaylor/Documents/toolkit/src/test/resources/jmaxalign/files/l2.txt

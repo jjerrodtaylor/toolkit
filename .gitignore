@@ -2,5 +2,11 @@
 *.iml
 /target
 *.pdf
+<<<<<<< HEAD
 *.ec
 *.txt
+=======
+*.ipr
+*.iws
+*.ec
+>>>>>>> januaryrevert

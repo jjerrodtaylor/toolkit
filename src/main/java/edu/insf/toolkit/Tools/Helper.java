@@ -1,7 +1,7 @@
 package edu.insf.toolkit.Tools;
 
-import edu.insf.toolkit.Pattern;
 
+import edu.insf.toolkit.Tools.Pattern;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.LinkedList;
