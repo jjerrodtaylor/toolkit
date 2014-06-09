@@ -23,11 +23,13 @@ public class Main
         TextExtractor textExtractor = new TextExtractor();
         TextTokenizer textTokenizer = new TextTokenizer();
         HTMLPage html = new HTMLPage();
+        Constants constants = new Constants();
 
-        //ArrayList<String> combinedText = fileHelper.readFileToMemory(Constants.ALICE);
-        //ArrayList<ArrayList<String>> seperateTexts = textTokenizer.divideText(combinedText,0,4);
 
-        //String page = html.makePage(seperateTexts);
-        //fileHelper.writeFile(page,"alice-pt-en.html");
+        ArrayList<String> combinedText = fileHelper.readFileToMemory(constants.aligned("aligned_l2-l1.txt"));
+        ArrayList<ArrayList<String>> seperateTexts = textTokenizer.divideText(combinedText,0,1);
+
+        String page = html.makePage(seperateTexts);
+        fileHelper.writeFile(page,"metamorphosis-en-de.html");
     }
 }

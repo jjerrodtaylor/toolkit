@@ -1,6 +1,5 @@
 package edu.insf.toolkit.HTML;
 
-
 import java.util.ArrayList;
 
 public class HTMLPage
@@ -11,6 +10,13 @@ public class HTMLPage
     }
 
     private String page = "";
+
+    public HTMLPage linkStyleSheet(String path)
+    {
+        page = page+"<link rel=\"stylesheet\" type=\"text/css\" href=\""+path+"\" />"+System.getProperty("line.separator");
+        return this;
+    }
+
 
     public HTMLPage openHtml()
     {
@@ -47,6 +53,23 @@ public class HTMLPage
         page = page+"</body>" + System.getProperty("line.separator");
         return this;
     }
+    public HTMLPage openStyle()
+    {
+        page = page+"<style>"+System.getProperty("line.separator");
+        return this;
+    }
+
+    public HTMLPage closeStyle()
+    {
+        page = page+"</style>"+System.getProperty("line.separator");
+        return this;
+    }
+
+    public HTMLPage addStyle(String klass, String attribute, String value)
+    {
+        page = page+"."+klass+": {"+attribute+": "+value+"; }"+System.getProperty("line.separator");
+        return this;
+    }
 
     public HTMLPage openHead()
     {
@@ -62,7 +85,13 @@ public class HTMLPage
 
     public HTMLPage openDiv()
     {
-        page = page+"<div>" + System.getProperty("line.separator");
+        page = page+"<div>"+ System.getProperty("line.separator");
+        return this;
+    }
+
+    public HTMLPage openDiv(String id, String klass)
+    {
+        page = page+"<div id="+id+" class="+klass+">" + System.getProperty("line.separator");
         return this;
     }
 
@@ -95,7 +124,17 @@ public class HTMLPage
         page = page+"</tr>" + System.getProperty("line.separator");
         return this;
     }
+    public HTMLPage openTBody()
+    {
+        page = page+"<tbody>"+System.getProperty("line.separator");
+        return this;
+    }
 
+    public HTMLPage closeTBody()
+    {
+        page = page+"</tbody>"+System.getProperty("line.separator");
+        return this;
+    }
     public HTMLPage openP()
     {
         page = page+"<p>" + System.getProperty("line.separator");
@@ -108,10 +147,61 @@ public class HTMLPage
         return this;
     }
 
+    public HTMLPage openA()
+    {
+        page = page+"<a href= >"+System.getProperty("line.separator");
+        return this;
+    }
+
+    public HTMLPage closeA()
+    {
+        page = page+"</a>";
+        return this;
+    }
+
+    public HTMLPage openSpan()
+    {
+        page = page+"<span>"+System.getProperty("line.separator");
+        return this;
+    }
+
+    public HTMLPage closeSpan()
+    {
+        page = page+"</span>"+System.getProperty("line.separator");
+        return this;
+    }
+
     public HTMLPage addContent(String content)
     {
         page = page+content + System.getProperty("line.separator");
         return this;
+    }
+
+    public String makeFrontParalelPage(ArrayList<String> content, String number, String paragraph)
+    {
+        this.openTable()
+                .openTBody()
+                    .openTR()
+                        .openTD()
+                            .openP()
+                            .openA()
+                            .addContent(number)
+                            .closeA()
+                            .openA()
+                            .closeA()
+                            .addContent(".")
+                            .closeP()
+                        .closeTD()
+                        .openTD()
+                            .openP()
+                            .addContent(paragraph)
+                            .closeP()
+                        .closeTD()
+                    .closeTR()
+                .closeTBody()
+        .closeTable();
+
+    return this.page;
     }
 
     public String makePage(ArrayList<ArrayList<String>> content)

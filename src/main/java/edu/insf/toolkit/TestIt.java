@@ -8,7 +8,7 @@ import edu.insf.toolkit.Tools.Constants;
 import edu.insf.toolkit.Tools.FileHelper;
 import edu.insf.toolkit.Tools.TextExtractor;
 import edu.insf.toolkit.Tools.TextTokenizer;
-//import edu.insf.toolkit.Hunalign;
+import org.jsoup.*;
 
 public class TestIt {
 
@@ -18,6 +18,18 @@ public class TestIt {
         TextExtractor textExtractor = new TextExtractor();
         TextTokenizer textTokenizer = new TextTokenizer();
         HTMLPage html = new HTMLPage();
+        Constants constants = new Constants();
+
+
+        ArrayList<String> enMetamorph = fileHelper.readFileToMemory(constants.books("metamorphosis_en.txt"));
+        ArrayList<String> deMetamorph = fileHelper.readFileToMemory(constants.books("metamorphosis_de.txt"));
+
+        ArrayList<String> enTokenMetamorph = textTokenizer.tokenize(textTokenizer.toString(enMetamorph),Locale.US);
+        ArrayList<String> deTokenMetamorph = textTokenizer.tokenize(textTokenizer.toString(deMetamorph),Locale.GERMAN);
+
+        fileHelper.writeFile(enTokenMetamorph,constants.tokenized("metamorphosis_en.txt"));
+        fileHelper.writeFile(deTokenMetamorph,constants.tokenized("metamorphosis_de.txt"));
+
 
         //For the english
         /*File file = fileHelper.turnToFile(Constants.ALICE_ES);
@@ -28,7 +40,7 @@ public class TestIt {
         fileHelper.writeFile(firstChapter, "alice_es_test.txt");
 
         ArrayList<String> list = textTokenizer.tokenize(firstPage, Locale.US);
-        String test = list.toString();
+        String jmaxalign.test = list.toString();
         list = textTokenizer.replaceNewLines(list);
         fileHelper.writeFile(list, Constants.METAMORPH_ENG_TXT_FMT);
 
@@ -45,8 +57,8 @@ public class TestIt {
         ArrayList<String> combinedText = fileHelper.readFileToMemory(Constants.METAMORPH_ENG_ESP_TXT);
         ArrayList<ArrayList<String>> seperateTexts = textTokenizer.divideText(combinedText,0,1);
 
-        String page = html.makePage(seperateTexts);
-        fileHelper.writeFile(page,"testpage.html"); */
+        //String page = html.makePage(seperateTexts);
+        //fileHelper.writeFile(page,"testpage.html");*/
 
     }
 }
