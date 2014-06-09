@@ -4,6 +4,7 @@ import edu.insf.toolkit.Tools.FileHelper;
 
 import java.text.BreakIterator;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 /**
@@ -51,7 +52,7 @@ public class TextTokenizer
     public ArrayList<String> tokenize(String text, Locale locale)
     {
         ArrayList<String> sentences = new ArrayList<String>();
-        BreakIterator sentenceIterator = BreakIterator.getSentenceInstance(Locale.US);
+        BreakIterator sentenceIterator = BreakIterator.getSentenceInstance(locale);
         sentenceIterator.setText(text);
         int boundary = sentenceIterator.first();
         int lastBoundary = 0;
@@ -65,6 +66,18 @@ public class TextTokenizer
             lastBoundary = boundary;
         }
         return sentences;
+    }
+
+    public String toString(List<String> strings)
+    {
+        StringBuilder sb = new StringBuilder();
+
+        for(String s:strings)
+        {
+            sb.append(" "+s);
+        }
+
+        return sb.toString();
     }
 
     public ArrayList<String> tokenize(String text, String language)
@@ -97,6 +110,19 @@ public class TextTokenizer
             newLines.add(str);
         }
         return newLines;
+    }
+
+    public ArrayList<String> divideText(ArrayList<String>  combinedText, Integer text1)
+    {
+        String[] newStrings;
+        ArrayList<String> l1Text = new ArrayList<String>();
+
+        for(String s: combinedText)
+        {
+            newStrings = s.split("\\t");
+            l1Text.add(newStrings[text1]);
+        }
+        return l1Text;
     }
 
     public ArrayList<ArrayList<String>> divideText(ArrayList<String> combinedText, Integer text1, Integer text2)
