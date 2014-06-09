@@ -7,17 +7,12 @@ import java.io.File;
  */
 public class Constants
 {
-    public String root = "/src/test/resources";
+    private String resourcesRoot = "/src/test/resources";
+    private String root = "/src/";
     public static String TEST_FILE = Constants.makeFilePath("/src/test/resources/testfile.txt");
     public static String READ_FILE_NAME = null;
     public static String WRITE_FILE_NAME = null;
-    public static String METAMORPH_ENG = Constants.makeFilePath("/src/test/resources/pdf/metamorph_eng.pdf");
     public static String METAMORPH_ESP = Constants.makeFilePath("/src/test/resources/pdf/metamorph_esp.pdf");
-    public static String METAMORPH_ENG_TXT = Constants.makeFilePath("/src/test/resources/metamorph_eng.txt");
-    public static String METAMORPH_ESP_TXT = Constants.makeFilePath("/src/test/resources/metamorph_esp.txt");
-    public static String METAMORPH_ENG_TXT_FMT = Constants.makeFilePath("/src/test/resources/metamorph_eng_fmt.txt");
-    public static String METAMORPH_ESP_TXT_FMT = Constants.makeFilePath("/src/test/resources/metamorph_esp_fmt.txt");
-    public static String METAMORPH_ENG_ESP_TXT = Constants.makeFilePath("/src/test/resources/processed/Kafka_Franz-Verwandlung-en-es.txt");
 
 
     public Constants()
@@ -25,33 +20,44 @@ public class Constants
         super();
     }
 
+    public String getRoot()
+    {
+        return Constants.makeFilePath(root);
+    }
+
     public String pdfs(String fileName)
     {
-        String address = root+"/pdfs/"+fileName;
+        String address = resourcesRoot+"/pdfs/"+fileName;
         return Constants.makeFilePath(address);
     }
 
+    public String jmaxalign(String fileName)
+    {
+        String address = resourcesRoot+"/jmaxalign/"+fileName;
+        return Constants.makeFilePath(address);
+    }
+    
     public String books(String fileName)
     {
-        String address = root+"/books/"+fileName;
+        String address = resourcesRoot+"/books/"+fileName;
         return Constants.makeFilePath(address);
     }
 
     public String tokenized(String fileName)
     {
-        String address = root+"/tokenized/"+fileName;
+        String address = resourcesRoot+"/tokenized/"+fileName;
         return Constants.makeFilePath(address);
     }
 
     public String processed(String fileName)
     {
-        String address = root+"/processed/"+fileName;
+        String address = resourcesRoot+"/processed/"+fileName;
         return Constants.makeFilePath(address);
     }
 
     public String aligned(String fileName)
     {
-        String address = root+"/aligned/"+fileName;
+        String address = resourcesRoot+"/aligned/"+fileName;
         return Constants.makeFilePath(address);
     }
 

@@ -4,6 +4,7 @@ import com.snowtide.pdf.*;
 import com.snowtide.pdf.PDFTextStream;
 import edu.insf.toolkit.Tools.FileHelper;
 
+
 import java.io.*;
 import java.util.ArrayList;
 
@@ -68,4 +69,6 @@ public class TextExtractor
 
         return chapter;
     }
+
+
 }
